@@ -27,7 +27,7 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: auto; /* allow scrolling on mobile */
   font-family: 'Inter', sans-serif;
   background: var(--bg-gradient);
   color: var(--text);
@@ -146,8 +146,9 @@ html, body {
   flex: 1;
   background: var(--bg-gradient);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start; /* start at top on small screens */
+  justify-content: flex-start;
+  padding: 16px;
 }
 
 .welcome-text {
@@ -249,7 +250,8 @@ html, body {
   margin-top: 12px;
   background: rgba(0,0,0,0.15);
   border-radius: 12px;
-  overflow: hidden;
+  overflow-x: auto; /* horizontal scroll on small screens */
+  overflow-y: hidden;
   border: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -257,6 +259,8 @@ html, body {
   width: 100%;
   border-collapse: collapse;
 }
+
+.students-table { min-width: 720px; }
 
 .students-table th, .students-table td {
   text-align: left;
@@ -292,6 +296,17 @@ html, body {
 @media (max-width: 900px) {
   .student-form .form-grid { grid-template-columns: 1fr; }
   .search-input { width: 100%; min-width: 0; }
+}
+
+/* Mobile layout adjustments */
+@media (max-width: 768px) {
+  .header { padding: 14px; }
+  .header-title { font-size: 14px; }
+  .sidebar { width: 100%; }
+  .main-content { flex-direction: column; }
+  .content-area { padding: 12px; }
+  .students-page { padding: 12px; }
+  .action-btn, .row-btn, .theme-toggle, .menu-toggle { padding: 10px; height: 44px; }
 }
 
 /* Removed intro overlay styles */
