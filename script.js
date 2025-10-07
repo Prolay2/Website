@@ -2,6 +2,7 @@
 const menuItems = document.querySelectorAll('.menu-item');
 const headerTitle = document.querySelector('.header-title');
 const contentArea = document.querySelector('.content-area');
+const sidebarEl = document.querySelector('.sidebar');
 
 // Content for each page
 const pageContents = {
@@ -284,6 +285,14 @@ toggleBtn.addEventListener('click', () => {
         icon.textContent = '☀️';
     }
 });
+
+// Sidebar toggle functionality
+const menuToggleBtn = document.getElementById('menu-toggle');
+if (menuToggleBtn && sidebarEl) {
+    menuToggleBtn.addEventListener('click', () => {
+        sidebarEl.classList.toggle('hidden');
+    });
+}
 
 // Initialize dashboard as default page on load
 document.addEventListener('DOMContentLoaded', () => {
