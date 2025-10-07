@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <title>Upastithi - Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+        <span class="icon">☰</span>
+      </button>
+      <h1 class="header-title"></h1>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="icon">🌙</span>
+      </button>
+    </header>
+
+    <div class="main-content">
+      <nav class="sidebar" role="navigation" aria-label="Main navigation">
+        <div class="menu-item active" data-page="dashboard" tabindex="0" role="button">
+          <span>Dashboard</span>
+        </div>
+        <div class="menu-item" data-page="students" tabindex="0" role="button">
+          <span>Manage Students</span>
+        </div>
+        <div class="menu-item" data-page="sessions" tabindex="0" role="button">
+          <span>Manage Sessions</span>
+        </div>
+        <div class="menu-item" data-page="access" tabindex="0" role="button">
+          <span>Manage Access</span>
+        </div>
+      </nav>
+
+      <main class="content-area" role="main">
+        
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

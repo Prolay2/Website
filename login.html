@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Login - Upastithi</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Page-scoped tweaks for login layout (keeps existing theme) */
+    .login-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
+    .login-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .login-card { width: 100%; max-width: 420px; background: var(--surface); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; }
+    .login-title { text-align: center; font-size: 2rem; margin: 12px 0 4px; }
+    .login-subtitle { text-align: center; opacity: 0.9; margin-bottom: 16px; }
+    .login-form { display: grid; gap: 12px; }
+    .login-form label { font-size: 0.9rem; opacity: 0.9; }
+    .login-form input { padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.2); color: var(--text); outline: none; }
+    .login-actions { display: flex; gap: 10px; margin-top: 6px; }
+    .full-width { width: 100%; }
+    .muted { opacity: 0.9; font-size: 0.9rem; text-align: center; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="login-wrapper">
+    <header class="header">
+      <h1 class="header-title">Welcome to Upastithi</h1>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="icon">🌙</span>
+      </button>
+    </header>
+
+    <main class="login-main" role="main">
+      <div class="login-card" role="region" aria-labelledby="login-title">
+        <h2 id="login-title" class="login-title">Sign in</h2>
+        <p class="login-subtitle">Admin access only</p>
+
+        <form id="login-form" class="login-form" autocomplete="off">
+          <div>
+            <label for="login-username">Username</label>
+            <input id="login-username" name="username" type="text" placeholder="admin" required />
+          </div>
+          <div>
+            <label for="login-password">Password</label>
+            <input id="login-password" name="password" type="password" placeholder="••••••••" minlength="6" required />
+          </div>
+          <div class="login-actions">
+            <button type="submit" class="action-btn primary full-width">Login</button>
+          </div>
+          <div class="muted">Front-end only demo. Any credentials will continue to dashboard.</div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Theme toggle (reuse pattern from index)
+    (function(){
+      const toggleBtn = document.getElementById('theme-toggle');
+      const icon = toggleBtn && toggleBtn.querySelector('.icon');
+      if (toggleBtn && icon) {
+        toggleBtn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          if (current === 'light') {
+            document.documentElement.removeAttribute('data-theme');
+            icon.textContent = '🌙';
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            icon.textContent = '☀️';
+          }
+        });
+      }
+    })();
+
+    // Front-end only login flow: validate then redirect to dashboard (index.html)
+    (function(){
+      const form = document.getElementById('login-form');
+      const userEl = document.getElementById('login-username');
+      const passEl = document.getElementById('login-password');
+      if (!form) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const username = String(userEl.value || '').trim();
+        const password = String(passEl.value || '').trim();
+        if (!username || !password) return;
+        if (password.length < 6) { alert('Password must be at least 6 characters.'); return; }
+        // On success, redirect to dashboard
+        window.location.href = 'index.html';
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
